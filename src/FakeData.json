@@ -1,0 +1,66 @@
+[
+    {
+        "id": 1,
+        "name": "Hibiscus Tea",
+        "price": 21.00,
+        "desc": "Hibiscus tea has been the preferred drink of many cultures, dating as far back as ancient Egypt. Pharaohs would refresh themselves from the Nile Valley heat by enjoying a sour-sweet cupful. Our delicious Hibiscus Black pairs this tangy flower with bright and brisk Ceylon tea. Layered, fruity-spicy aroma and flavor. Rich, tangy and punchy, great hot or iced!",
+        "img":"HibiscusTea.jpg",
+        "quantity":1
+    },
+    {
+        "id": 2,
+        "name": "Masala tea",
+        "price": 23.00,
+        "desc": "Our Masala tea blend combines premium Ceylon black tea with cinnamon, cardamom, cloves and ginger. In Indian culture, 'Masala' means 'a blend of spices', and 'chai' simply means 'tea.' So, Masala Chai is literally 'spiced tea'. Our interpretation tries to stay true to its definition thanks to a warm and inviting fragrance, zesty flavor, and invigorating, aromatic finish. We suggest two heaping teaspoons per 8 oz cup. Sugar or milk if desired.",
+        "img":"masala__tea.jpg",
+        "quantity":1
+    },
+    {
+        "id": 3,
+        "name": "Matcha tea",
+        "price": 25.00,
+        "desc": "Matcha, the focal point of the Japanese Tea Ceremony, is a fine powder made by grinding green tea leaves. Only the finest, young, shade-grown gyokuro tea leaves are used to create matcha. The leaves are plucked and laid out flat to dry. Veins are removed and the leaves, now called tencha, are carefully ground in granite mills until they become the precious powder. Easy preparation is achieved by placing 1 teaspoon of matcha per cup (or to taste) in a cup, adding a few drops of hot water (160-180F) and stirring with a spoon until a paste forms. Add the rest of the water and stir.",
+        "img":"matcha_tea.jpg",
+        "quantity":1
+    },
+    {
+        "id": 4,
+        "name": "Ginger Tea",
+        "price": 19.00,
+        "desc": "Globally popular, ginger root offers a wide range of culinary applications and traditional medicinal uses. Bright notes of sweet heat and lingering fire can give any tea blend a little boldness. Historically used for settling temperamental tummies, and soothing colds, ginger is a favorite spice the world over. | Country of origin: Vietnam",
+        "img":"termaric_ginger_tea.jpg",
+        "quantity":1
+    },
+    {
+        "id": 5,
+        "name": "White Tea",
+        "price": 20.00,
+        "desc": "Silver Needle white tea is made up of young and elegant tea leaf buds with a whisper of jasmine aura. All the appeal and softly sweet nuances of a classic Silver Needle tea, enhanced with the graceful aroma of night-blooming jasmine flowers. Airy flavor, delicate mouthfeel and pleasantly dry finish. The quiet nature of this Jasmine Silver Needle white tea ensures it will make a gentle companion for your special moments.",
+        "img":"white_tea.jpg",
+        "quantity":1
+    },
+    {
+        "id": 6,
+        "name": "Black Tea",
+        "price": 15.00,
+        "desc": "Looking to share something different with your tea friends? Surprise your friends by serving our refreshingly delicious Blackberry black tea. Bright, citrusy Ceylon black tea infused with sweetly tart blackberries is an adventure for your palate. Pleasantly sweet with bakery aromas like fresh berry scones, floral-fruity aroma, and slightly dry finish. Perfect hot or iced and an easy tea to blend with others, too.",
+        "img":"black_tea.jpg",
+        "quantity":1
+    },
+    {
+        "id": 7,
+        "name": "Mint Tea",
+        "price": 24.00,
+        "desc": "A native of the Mediterranean, peppermint leaves were often used to crown luminaries in ancient Greece and Rome. It continues to be revered for its cooling, crisp aroma, deeply refreshing flavor, and smooth finish. If you have yet to try gourmet peppermint tea, made from just pure peppermint (no added oils or sweeteners), you'll be pleasantly surprised by its superior flavor",
+        "img":"peppermint_tea.jpg",
+        "quantity":1
+    },
+    {
+        "id": 8,
+        "name": "Yellow Tea",
+        "price": 21.00,
+        "desc": "The large twisted yellow tea leaves brew to a lovely golden yellow color. It has soft, airy notes and a dry, crisp, fruity character reminiscent of a well-made tippy Darjeeling, but a bit more mellow. Lingering floral notes whisper in the finish.",
+        "img":"yellow_tea.jpg",
+        "quantity":1
+    }
+]

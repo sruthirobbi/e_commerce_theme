@@ -1,0 +1,31 @@
+@import '../../common.scss';
+.Additem-title{
+    .subTitles{
+        @include display(inline)
+    }
+    
+}
+
+.displayField{
+    display: inline-flex;
+}
+
+.imageUploadContainer{
+        height: 85%;
+        width: 50%;
+        border: 2px dashed #b1a6a6;
+        border-radius:5px
+}
+
+.imageUpload{
+    height:100%;
+    width: 100%;
+}
+
+.imageForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+}
+

@@ -1,0 +1,10 @@
+@import '../../common.scss';
+
+.ContactUs-title{
+    .subTitles{
+        @include display(inline)
+    }
+}
+.ContactUs-maps{
+    position: relative;
+}

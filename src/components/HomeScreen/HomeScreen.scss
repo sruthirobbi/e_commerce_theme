@@ -1,0 +1,28 @@
+@import '../../common.scss';
+
+.homeScreen {
+    margin-left: 63px; /* Same as the width of the sidenav */
+
+    img{
+        @include dimensions(95.6vw,100vh);
+        top:0;
+        position: absolute;
+        z-index:-10;
+    }
+  }
+
+  .quote{
+      position: absolute;
+      top:50%;
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-size:9vw;
+      left:11%;
+      color: $white;
+      text-shadow: 2px 2px $shadow;
+
+      span{
+          color:$primary
+      }
+  }
+  

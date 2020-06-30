@@ -1,0 +1,70 @@
+@import '../../common.scss';
+
+.productPaper{
+    position: absolute;
+    background-color: $white;
+    border: 2px solid $primary;
+    padding: $padding8px*2 ;
+    border-radius: 10px;
+    top:50%;
+    left:50%;
+    transform:translate( -50%, -49%);
+    outline: 0;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    width:55%;
+
+    @include sm{
+        width:98vw;
+        text-align: center;
+    }
+
+   
+        .container {
+            position: relative;
+          }
+    
+    .productImage{
+        // height:50vh;
+        width:100%;
+        display: block;
+    }
+
+    .overlay {
+        position: absolute;
+            top: 50%;
+            color: white;
+            background-color: rgba(0,0,0,0.5);
+            font-size: 30px;
+            left: 26%;
+      }
+    
+    .product-title{
+        display: inline-flex;
+
+        .subTitles{
+            @include sm{
+                padding:0px;
+            }
+        }
+    }
+
+    .productDetails{
+        .productText{
+            padding:$padding8px*2;
+
+            @include sm{
+                padding:0px;
+            }
+            
+        }
+
+        .productButton:last-of-type{
+            margin-left:20px
+        }
+         
+    }
+}
+
+

@@ -1,0 +1,7 @@
+@import '../../common.scss';
+.SignIn-title{
+    .subTitles{
+        @include display(inline)
+    }
+    
+}

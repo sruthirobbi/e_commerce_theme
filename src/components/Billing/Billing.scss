@@ -1,0 +1,63 @@
+@import '../../common.scss';
+
+.Billing-Container{
+    .Billing-title{
+        .subTitles{
+            @include display(inline)
+        }
+    }
+
+    .Billing-billing{
+        padding:$padding8px*5;
+
+        .Billing-state{
+            padding:0px 12px;
+
+            label{
+                padding:0px 19px;
+            }
+
+            div{
+                padding: 9px 27px;
+            }
+        }
+
+        .Billing-card{
+            @include display(inline)
+        }
+
+        .Billing-CardDemo{
+           .cardNumber{
+                height: 50px;
+                padding: 17px;
+                margin: 7px 0px;
+                width: 100%;
+                border: 1px solid #ccc9c9;
+                border-radius: 5px;
+            }
+        }
+        .Billing-error{
+            height:20px;
+            color:$darkColor
+        }
+    }
+
+    
+}
+
+.Billing-Paper{
+    position: absolute;
+    width: 68%;
+    background-color: $white;
+    border: 2px solid $primary;
+    padding: $padding8px*2 $padding8px*4 $padding8px*3;
+    border-radius: 5px;
+    top:50%;
+    left:53%;
+    transform:translate( -50%, -53%);
+    outline: 0;
+    
+    .Billing-Link{
+        text-decoration: none;
+    }
+}

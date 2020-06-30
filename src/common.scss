@@ -1,0 +1,67 @@
+//color Palette
+$black: #383737;
+$darkColor:#ff5c62;
+$liteColor:#f9cbcf;
+$white: white;
+$primary:#b00303;
+$shadow:#ff0000; 
+
+//dimensions
+$fifty: 50px;
+$padding8px:8px;
+$padding5px:5px;
+
+//Font
+$mainTitle: 24px;
+$subTitle: 18px;
+$content:12px;
+
+@mixin dimensions($width,$height){
+    width:$width;
+    height:$height;
+}
+
+@mixin display($value){
+    display:$value
+}
+
+$screen-sm-min: 576px;
+
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+
+// Tablets and small desktops
+$screen-lg-min: 992px;
+
+// Large tablets and desktops
+$screen-xl-min: 1200px;
+
+
+
+// Small devices
+@mixin sm {
+    @media (max-width: #{$screen-sm-min}) {
+        @content;
+    }
+ }
+ 
+ // Medium devices
+ @mixin md {
+    @media (max-width: #{$screen-md-min}) {
+        @content;
+    }
+ }
+ 
+ // Large devices
+ @mixin lg {
+    @media (max-width: #{$screen-lg-min}) {
+        @content;
+    }
+ }
+ 
+ // Extra large devices
+ @mixin xl {
+    @media (min-width: #{$screen-xl-min}) {
+        @content;
+    }
+ }
