@@ -64,6 +64,10 @@ function AddItem(){
     }
   };
 
+  const handleSubmit = e => {
+      console.log("e",e.target.value)
+  }
+
     return(
         <div>
             <div className="Additem-title">
@@ -72,7 +76,7 @@ function AddItem(){
             </div>
             <div className={classes.root}>
             <Grid container spacing={3}>
-                    
+                
                     <Grid item xs={12} sm={12} md={6} lg={4}>
                         <Paper elevation={3} className={classes.paper2}>
                             <Title title="Product Details" fontsize="20px"/>
@@ -105,7 +109,7 @@ function AddItem(){
                                 </form>
                             </div>
                             <Divider/>
-                            <Button className={classes.button} variant="contained" color="secondary" > Save</Button>
+                            <Button className={classes.button} variant="contained" color="secondary" onClick={handleSubmit}> Save</Button>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={12} md={6} lg={4}>

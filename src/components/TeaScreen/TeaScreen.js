@@ -23,16 +23,22 @@ function TeaScreen() {
   };
 
   useEffect(()=>{
-    axios.get('/api/products')
-    .then(res=>{
-      setProductData(res.data)
-    })
+    async function fetchData(){
+      await axios.get('http://localhost:5000/product/')
+      .then(res=>{
+        setProductData(res.data)
+      })
+    }
+    fetchData()
+
   },[]);
+
+  console.log("productData",productData)
 
   return (
       <Grid container className="TeaScreen" spacing={2} justify="center">
-          {data.map((list,index)=>
-            <Grid item className="item" key={list.id} index={index}  xs={12} sm={3} md={3} >
+          {productData.map((list,index)=>
+            <Grid item className="item" key={list._id} index={index}  xs={12} sm={3} md={3} >
             <Paper elevation={3} >
             <div className="container">
               <img alt={list.name} src={require(`../../image/${list.img}`)} className="image"/>

@@ -28,7 +28,7 @@ function ProductView(props){
                         imageSrc={process.env.PUBLIC_URL + `/image/${props.data.img}`}
                         imageAlt="Example"
                         className="productImage"
-                        alwaysInPlace="false"
+                        alwaysInPlace={true}
                         />
                         <div className="overlay"> Hover on Image</div>
                         </div>
