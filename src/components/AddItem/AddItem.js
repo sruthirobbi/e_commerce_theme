@@ -25,17 +25,17 @@ const useStyles = makeStyles((theme) => ({
     },
     paper2:{
         display:'grid',
-        gridTemplateRows: '75px 0px 372px 0px 70px',
+        gridTemplateRows: '75px 0px 330px 0px 70px',
     },
     inputFields:{
         '& > *': {
-            margin: '6px 24px',
+            margin: '22px 24px',
              width: '400px',
           },
     },
     inputFieldsSide:{
         '& > *': {
-            margin: '6px 24px',
+            margin: '6px 23px',
              width: '177px',
           },
     },
@@ -65,6 +65,7 @@ function AddItem(){
   };
 
   const handleSubmit = e => {
+    e.preventDefault();
       console.log("e",e.target.value)
   }
 
@@ -82,34 +83,30 @@ function AddItem(){
                             <Title title="Product Details" fontsize="20px"/>
                             <Divider/>
                             <div className={classes.container}>
-                            <form className={classes.inputFields} noValidate autoComplete="off">
-                                <section>Name </section>
-                                <TextField id="outlined-basic" label="Name Required" variant="outlined" />
-                            </form>
-                            <div className="displayField">
-                            <form className={classes.inputFieldsSide} noValidate autoComplete="off">
-                                <section>Price ($)</section>
-                                <TextField id="outlined-basic" label="Price Required" variant="outlined" />
-                            </form>
-                            <form className={classes.inputFieldsSide} noValidate autoComplete="off">
-                                <section>Weight (OZ)</section>
-                                <TextField id="outlined-basic" label="Weight Required" variant="outlined" />
-                            </form>
-                            </div>
-                            <form className={classes.inputFields} noValidate autoComplete="off">
-                                <section>Description </section>
+                            <form  onSubmit={handleSubmit} noValidate autoComplete="off">
+                                <TextField className={classes.inputFields} id="outlined-basic" label="Name" variant="outlined" />
+                                <div className="displayField">
+                                    <TextField id="outlined-basic" label="Price in USD" variant="outlined" className={classes.inputFieldsSide}/>
+                                    <TextField id="outlined-basic" label="Weight in oz" variant="outlined" className={classes.inputFieldsSide}/>
+                                </div>
+                            
                                 <TextField
                                     id="outlined-textarea"
-                                    label="Description Required"
+                                    label="Description"
                                     placeholder="Placeholder"
                                     multiline
                                     variant="outlined"
                                     rows={4}
+                                    className={classes.inputFields}
                                     />
-                                </form>
+                                    
+                            </form>
                             </div>
                             <Divider/>
-                            <Button className={classes.button} variant="contained" color="secondary" onClick={handleSubmit}> Save</Button>
+                            <Button className={classes.button} 
+                                    variant="contained" 
+                                    color="secondary" 
+                                    onClick={handleSubmit}> Save</Button>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={12} md={6} lg={4}>
@@ -120,7 +117,7 @@ function AddItem(){
                                 <input className="fileInput" 
                                         onChange={handleImageUpload} 
                                         style={{display: "none" }} 
-                                        ref={imageUploader} type="file" multiple = "false"/>
+                                        ref={imageUploader} type="file" multiple = {false}/>
                             </form>
                             <form className="imageForm" noValidate autoComplete="off">
                                 <div className="imageUploadContainer">
