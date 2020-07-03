@@ -1,4 +1,4 @@
-import React,{useRef} from 'react';
+import React,{useRef,useState} from 'react';
 import TeaSvg from '../../common/TeaSvg/TeaSvg';
 import Title from '../../common/Title/Title';
 import Paper from '@material-ui/core/Paper';
@@ -8,7 +8,11 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import './AddItem.scss';
-import backrgoundImage from '../../image/default.jpg'
+import useAddItemForm from './useAddItemForm';
+import AddItemValidation from './AddItemValidation';
+import validations from './validations';
+import ImageUploader from "react-images-upload";
+import Resizer from 'react-image-file-resizer';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,31 +47,26 @@ const useStyles = makeStyles((theme) => ({
         width: '50%',
         margin: '17px 0px',
         marginLeft: '25%'
-    },
+    }
   }));
 
 function AddItem(){
     const classes = useStyles();
-    const uploadedImage = React.useRef(null);
-    const imageUploader = React.useRef(null);
+    const [pictures, setPictures] = useState([]);
 
-  const handleImageUpload = e => {
-    const [file] = e.target.files;
-    if (file) {
-        const reader = new FileReader();
-        const {current} = uploadedImage;
-        current.file = file;
-        reader.onload = (e) => {
-            current.src = e.target.result;
-        }
-        reader.readAsDataURL(file);
-    }
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-      console.log("e",e.target.value)
+        //custome hook
+        const { handleSubmit,
+            handleonChange,
+            initialstate,
+            errors,
+            }=useAddItemForm(submit,AddItemValidation,validations)
+  
+  function submit(){
+    console.log("Submited")
   }
+
+
+
 
     return(
         <div>
@@ -84,10 +83,38 @@ function AddItem(){
                             <Divider/>
                             <div className={classes.container}>
                             <form  onSubmit={handleSubmit} noValidate autoComplete="off">
-                                <TextField className={classes.inputFields} id="outlined-basic" label="Name" variant="outlined" />
+                                <TextField 
+                                            className={classes.inputFields} 
+                                            id="outlined-basic" 
+                                            label="Name"
+                                            name="name" 
+                                            variant="outlined" 
+                                            value={initialstate.name}
+                                            onChange={handleonChange}
+                                            helperText={!errors.name ? '':errors.name}
+                                            error={errors.name === ' ' || !(errors.name)? false:true}
+                                            />
                                 <div className="displayField">
-                                    <TextField id="outlined-basic" label="Price in USD" variant="outlined" className={classes.inputFieldsSide}/>
-                                    <TextField id="outlined-basic" label="Weight in oz" variant="outlined" className={classes.inputFieldsSide}/>
+                                    <TextField  id="outlined-basic" 
+                                                label="Price in USD" 
+                                                variant="outlined" 
+                                                className={classes.inputFieldsSide}
+                                                name="price"
+                                                value={initialstate.price}
+                                                onChange={handleonChange}
+                                                helperText={!errors.price ? '':errors.price}
+                                                error={errors.price === ' ' || !(errors.price)? false:true}
+                                                />
+                                    <TextField  id="outlined-basic" 
+                                                label="Weight in oz" 
+                                                variant="outlined" 
+                                                className={classes.inputFieldsSide}
+                                                name="quantity"
+                                                value={initialstate.quantity}
+                                                onChange={handleonChange}
+                                                helperText={!errors.quantity ? '':errors.quantity}
+                                                error={errors.quantity === ' ' || !(errors.quantity)? false:true}
+                                                />
                                 </div>
                             
                                 <TextField
@@ -97,9 +124,19 @@ function AddItem(){
                                     multiline
                                     variant="outlined"
                                     rows={4}
+                                    name="desc"
                                     className={classes.inputFields}
-                                    />
-                                    
+                                    value={initialstate.desc}
+                                    onChange={handleonChange}
+                                    helperText={!errors.desc ? '':errors.desc}
+                                    error={errors.desc === ' ' || !(errors.desc)? false:true}
+                                    /> 
+                                   
+                                   <input type="file" 
+                                            name="img"
+                                            value={initialstate.img} 
+                                            onChange={handleonChange}                                 
+                                   />
                             </form>
                             </div>
                             <Divider/>
@@ -109,26 +146,7 @@ function AddItem(){
                                     onClick={handleSubmit}> Save</Button>
                         </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={6} lg={4}>
-                        <Paper elevation={3} className={classes.paper1}>
-                                <Title title="Image Upload" fontsize="20px" />
-                            <Divider/>
-                            <form className={classes.inputFields} noValidate autoComplete="off">
-                                <input className="fileInput" 
-                                        onChange={handleImageUpload} 
-                                        style={{display: "none" }} 
-                                        ref={imageUploader} type="file" multiple = {false}/>
-                            </form>
-                            <form className="imageForm" noValidate autoComplete="off">
-                                <div className="imageUploadContainer">
-                                    <img className="imageUpload" ref={uploadedImage} src={backrgoundImage}/>
-                                </div>
-                            </form>
-                           
-                            <Divider/>
-                            <Button className={classes.button}  onClick={() => imageUploader.current.click()} variant="contained" color="secondary" >Upload</Button>
-                        </Paper>
-                    </Grid>
+                  
                 </Grid>
                 </div>
         </div>

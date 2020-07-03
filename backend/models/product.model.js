@@ -5,16 +5,19 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema({
     name:{
         type:String,
-        required:true
+        required:true,
+        unique:true,
+        trim:true,
+        minlength:3
     },
-    // image:{
-    //     type:String,
-    //     required:true,
-    //     data:Buffer
-    // },
+    img:{
+        type:String,
+        required:true,
+        data:Buffer
+    },
     price:{
         type:Number,
-        min:0,
+        default: 0,
         required:true
     },
     desc:{
@@ -23,6 +26,7 @@ const productSchema = new Schema({
     },
     quantity:{
         type:Number,
+        default: 0,
         required:true
     },
 },{

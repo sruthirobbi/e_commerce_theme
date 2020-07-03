@@ -7,6 +7,29 @@ router.route('/').get((req,res)=>{
     .catch(err =>res.status(400).json('Error: '+ err))
 });
 
+router.route('/add').post((req,res)=> {
+    console.log(req.body)
+    const name = req.body.name;
+    const price = req.body.price;
+    const quantity = req.body.quantity;
+    const desc = req.body.desc;
+    const img = req.body.img;
+
+    const newProduct = new Product({
+        name,
+        price,
+        quantity,
+        desc,
+        img
+    });
+
+    newProduct.save()
+    .then(product=> res.json(product))
+    .catch(err => res.status(400).json('Error: '+ err));
+
+});
+
+
 router.route('/:id').get((req,res)=>{
     Product.findById(req.params.id)
     .then(products =>res.json(products))

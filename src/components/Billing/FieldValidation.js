@@ -13,9 +13,9 @@ export default function FieldValidation(values,name){
           return errors;
         case "email":
             if(!values.email){
-                    return  errors.email = "Email address is required"
+                      errors.email = "Email address is required"
                  }else if (!values.email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)){
-                    return errors.email="Email is invalid"
+                     errors.email="Email is invalid"
                  }
           return errors;
         case "phone":

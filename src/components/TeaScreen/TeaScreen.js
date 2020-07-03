@@ -3,14 +3,15 @@ import {Grid,Button,Paper} from '@material-ui/core';
 import './TeaScreen.scss'
 import {CounterContext} from '../Context/Context';
 import axios from 'axios';
-import data from '../../FakeData.json';
 import ProductView from '../ProductView/ProductView';
+import defaultImage from '../../image/default.jpg'
 
 function TeaScreen() {
   const { dispatch } = useContext(CounterContext);
   const [productData, setProductData] = useState([]);
   const [current,setCurrent] = useState('');
   const [open, setOpen] = React.useState(false);
+ 
 
 
   const handleOpen = (e) => {
@@ -21,6 +22,7 @@ function TeaScreen() {
   const handleClose = () => {
     setOpen(false);
   };
+
 
   useEffect(()=>{
     async function fetchData(){
@@ -33,7 +35,6 @@ function TeaScreen() {
 
   },[]);
 
-  console.log("productData",productData)
 
   return (
       <Grid container className="TeaScreen" spacing={2} justify="center">
@@ -41,7 +42,7 @@ function TeaScreen() {
             <Grid item className="item" key={list._id} index={index}  xs={12} sm={3} md={3} >
             <Paper elevation={3} >
             <div className="container">
-              <img alt={list.name} src={require(`../../image/${list.img}`)} className="image"/>
+              <img alt={list.name} src={require(`../../image/${list.img}`)} className="image"  />
               <div className="overlay">
                 <Button variant="contained" className="text" onClick={()=>handleOpen(list)}>Quick View</Button>
               </div>

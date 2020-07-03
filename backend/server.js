@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+
 require('dotenv').config();
 
 const app = express();
@@ -18,12 +19,12 @@ connection.once('open', ()=>{
     console.log("MongoDB database connection established Successfully")
 });
 
+console.log(__dirname)
+
 const productRouter = require('./routes/product');
-const addItemRouter = require('./routes/addItem');
 const userRouter = require('./routes/users');
 
 app.use('/product', productRouter);
-app.use('/addItem', addItemRouter);
 app.use('/users', userRouter);
 
 app.listen(port, ()=> {
