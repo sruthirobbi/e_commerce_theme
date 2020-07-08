@@ -1,4 +1,4 @@
-import React,{useRef,useState} from 'react';
+import React from 'react';
 import TeaSvg from '../../common/TeaSvg/TeaSvg';
 import Title from '../../common/Title/Title';
 import Paper from '@material-ui/core/Paper';
@@ -11,8 +11,6 @@ import './AddItem.scss';
 import useAddItemForm from './useAddItemForm';
 import AddItemValidation from './AddItemValidation';
 import validations from './validations';
-import ImageUploader from "react-images-upload";
-import Resizer from 'react-image-file-resizer';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -52,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
 
 function AddItem(){
     const classes = useStyles();
-    const [pictures, setPictures] = useState([]);
 
         //custome hook
         const { handleSubmit,
@@ -64,9 +61,6 @@ function AddItem(){
   function submit(){
     console.log("Submited")
   }
-
-
-
 
     return(
         <div>

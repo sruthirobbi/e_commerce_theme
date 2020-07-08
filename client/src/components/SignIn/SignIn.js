@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useContext} from 'react';
 import Title from '../../common/Title/Title';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,7 +8,10 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import TeaSvg from '../../common/TeaSvg/TeaSvg';
-import './SignIn.scss'
+import './SignIn.scss';
+import axios from 'axios';
+import {AuthContext} from '../Context/AuthContext';
+import setAuthToken from '../../utils/setAuthToken';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
     paper1:{
         display:'grid',
-        gridTemplateRows: '75px 9px 109px 95px 37px',
+        gridTemplateRows: '75px 0px 219px 29px 4px',
     },
     paper2:{
         display:'grid',
@@ -57,6 +60,49 @@ const useStyles = makeStyles((theme) => ({
 function SignIn(){
 
     const classes = useStyles();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const { dispatch } = useContext(AuthContext);
+    const [error,setErroMsg] = useState([])
+
+    const hanldeLogin = async() =>{
+
+        let token = localStorage.getItem('token')
+        console.log(token)
+        const frmdetails = {
+            'email' : email,
+            'password' : password
+        }
+
+        if(!email || !password){
+            setErroMsg("Please provide both the fields")
+        }else{
+            const newUser = {
+                email,
+                password
+            }
+
+            try{
+                const config = {
+                    headers : {
+                        'content-Type':'application/json'
+                    }
+                }
+
+                const body = JSON.stringify(newUser);
+                const res = await axios.get('http://localhost:5000/users/user',body,config);
+                dispatch({
+                    type:"user_Loaded",
+                    payload:res.data
+                });
+            }catch(err){
+                setErroMsg(err.response.data)
+                dispatch({
+                    type:"auth_Error"
+                });
+            }
+        }
+    }
 
     return(
         <div>
@@ -71,14 +117,27 @@ function SignIn(){
                                 <Title title="Sign-In" fontsize="20px" />
                             <Divider/>
                             
-                            <form className={classes.inputFields} noValidate autoComplete="off">
+                            <form className={classes.inputFields} onSubmit={hanldeLogin} noValidate autoComplete="off">
                                 <section>Email Address </section>
-                                <TextField id="outlined-basic" label="Required" variant="outlined" />
-                            </form>
-                            
-                            <form className={classes.inputFields} noValidate autoComplete="off">
+                                <TextField 
+                                            id="outlined-basic" 
+                                            className={classes.inputFields} 
+                                            label="Required" 
+                                            variant="outlined"
+                                            name="email"
+                                            value={email}
+                                            onChange={e=>setEmail(e.target.value)}
+                                             />
+
                                 <section> Password </section>
-                                <TextField id="outlined-basic" label="Required" variant="outlined" />
+                                <TextField 
+                                            id="outlined-basic" 
+                                            label="Required" 
+                                            variant="outlined"
+                                            name="password"
+                                            className={classes.inputFields}
+                                            onChange={e=>setPassword(e.target.value)}
+                                            value={password} />
                             </form>
                             <div>
                                 <Link className={classes.link} to="#"  color="secondary">
@@ -86,7 +145,11 @@ function SignIn(){
                                 </Link>
                             </div>
                             <Divider/>
-                            <Button className={classes.button} variant="contained" color="secondary" disabled>Login</Button>
+                            <Button     className={classes.button} 
+                                        variant="contained" 
+                                        color="secondary"
+                                        onClick={hanldeLogin}
+                                        >Login</Button>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={12} md={6} lg={4}>

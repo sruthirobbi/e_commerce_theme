@@ -18,16 +18,26 @@ const useStyles = makeStyles((theme) => ({
     },
     paper1:{
         display:'grid',
-        gridTemplateRows: '75px 11px 108px 103px 109px 114px',
+        gridTemplateRows: '75px 0px 366px 0px 76px 0px',
     },
     container:{
         textAlign:'center'
     },
     inputFields:{
         '& > *': {
-            margin: '6px 24px',
-             width: '300px',
+            margin: '3px 0px 6px',
           },
+          margin:'12px 24px'
+    },
+    inputFieldsText:{
+        '& > *': {
+            margin: '3px 0px 6px',
+          },
+          margin:'12px 24px',
+    },
+    errorMsg:{
+        color:'red',
+        fontSize:'12px'
     },
     button:{
         width: '50%',
@@ -46,28 +56,26 @@ const useStyles = makeStyles((theme) => ({
 
 function Register(){
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+    const [username, setName] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const { dispatch } = useContext(AuthContext);
-    const [error,setErroMsg] = useState('')
+    const [error,setErroMsg] = useState([])
 
 
-    const submitValue = async() => {
+    const handleSubmit = async() => {
         const frmdetails = {
-            'name' : name,
-            'email' : email,
+            'username' : username,
             'password' : password,
             'confirmPassword' : confirmPassword
         }
+
 
         if(password !== confirmPassword){
             setErroMsg("Password does not match")
         }else{
             const newUser = {
-                name,
-                email,
+                username,
                 password
             }
 
@@ -78,14 +86,15 @@ function Register(){
                     }
                 }
                 const body = JSON.stringify(newUser);
-                const res = await axios.post('/api/users',body,config);
+                const res = await axios.post('http://localhost:5000/users/register',body,config);
                 dispatch({
-                    type:"login_Success",
+                    type:"Register_Success",
                     payload:res.data
                 });
             }catch(err){
+                // setErroMsg(err.response.data)
                 dispatch({
-                    type:"login_Fail"
+                    type:"auth_Error"
                 });
             }
         }
@@ -99,54 +108,47 @@ function Register(){
         <div>
             <Title title="Sign-Up" fontsize="45px" marginTop="0px"/>
             <Grid container spacing={1}>
-                    <Grid item xs={12} sm={12} md={6} lg={5}>
+                    <Grid item xs={12} sm={12} md={6} lg={4}>
                         <Paper elevation={3} className={classes.paper1}>
                             <Title title="Create an Account" fontsize="20px" />
                             <Divider/>
 
-                            <form className={classes.inputFields} noValidate autoComplete="off">
+                            <form className={classes.inputFields} onSubmit={handleSubmit} noValidate autoComplete="off">
                                 <section>Name </section>
                                 <TextField 
                                             id="outlined-basic" 
                                             label="Required" 
-                                            variant="outlined" 
-                                            value={name} 
+                                            name="username"
+                                            variant="outlined"
+                                            className={classes.inputFields} 
+                                            value={username} 
+                                            fullWidth
                                             onChange={e=>setName(e.target.value)}
                                             />
-                            </form>
                             
-                            <form className={classes.inputFields} noValidate autoComplete="off">
-                                <section>Email Address </section>
-                                <TextField 
-                                            id="outlined-basic" 
-                                            label="Required" 
-                                            variant="outlined"
-                                            value={email} 
-                                            onChange={e=>setEmail(e.target.value)}/>
-                            </form>
-                            
-                            <form className={classes.inputFields} noValidate autoComplete="off">
                                 <section> Password </section>
                                 <TextField 
                                             id="outlined-basic" 
                                             label="Required" 
+                                            name="password"
+                                            fullWidth
+                                            className={classes.inputFields}
                                             variant="outlined" 
                                             value={password} 
                                             onChange={e=>setPassword(e.target.value)}
                                             />
-                            </form>
-
-                            <form className={classes.inputFields} noValidate autoComplete="off">
+                            
                                 <section> Confirm Password </section>
                                 <TextField 
                                             id="outlined-basic" 
                                             label="Required" 
                                             variant="outlined"
-                                            value={confirmPassword}
-                                            helperText={error ? error : ' '} 
+                                            fullWidth
+                                            name="confirmPassword"
+                                            className={classes.inputFields}
+                                            value={confirmPassword} 
                                             onChange={e=>setConfirmPassword(e.target.value)}/>
-                            </form>
-                            <form className={classes.inputFields} >
+                                <span className={classes.errorMsg}>{error ? error : ' '}</span>
                             <section >
                                 Already have an Account? <Link to="/SignIn" className={classes.anchor} >Sign-In</Link>
                             </section>
@@ -157,7 +159,7 @@ function Register(){
                                     className={classes.button} 
                                     variant="contained" 
                                     color="secondary"
-                                    onClick={submitValue}
+                                    onClick={handleSubmit}
                                     >Sign-Up</Button>
                         </Paper>
                     </Grid>

@@ -3,7 +3,7 @@ import React,{useReducer} from 'react';
 
 let reducer = (state, action) => {
     const {type,payload} = action;
-    console.log("state from authContext",state)
+    console.log("state from authContext",state,payload)
       switch (type) {
         case "login_Success":
             
@@ -15,6 +15,8 @@ let reducer = (state, action) => {
                 loading: false
           }
         case "login_Fail":
+        case "Logout_success":
+        case "Register_fail":
               localStorage.removeItem('token');
               return{
                 ...state,
@@ -23,6 +25,7 @@ let reducer = (state, action) => {
                 loading: false
                 }
         case "user_Loaded":
+                localStorage.setItem('token',payload.token);
                 return{
                     ...state,
                     isAuthenticated:true,
@@ -37,6 +40,13 @@ let reducer = (state, action) => {
                 isAuthenticated: false,
                 loading: false
                 }
+        case "Register_Success":
+          localStorage.setItem('token',payload.token);
+          return{
+            ...state,
+            isAuthenticated: true,
+            loading: false
+          }
         default:
           return state;
       }

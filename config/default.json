@@ -1,0 +1,4 @@
+{
+    "ATLAS_URI": "mongodb+srv://Sruthi:Welcome123!@cluster0-stf7r.mongodb.net/test",
+    "jwtSecret":"verySecretCode"
+}
